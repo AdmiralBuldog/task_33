@@ -36,7 +36,7 @@ def test_login_with_correct_credentials(driver):
     driver.find_element(By.CSS_SELECTOR, "#username").send_keys(login)
     driver.find_element(By.CSS_SELECTOR, "#password").send_keys(password)
 
-    # Задержка 30 секунд для ввода капчи вручную
+    # Задержка 30 секунд для ввода капчи вручную (у меня начала появляться капча, поэтому сделал задержку)
     time.sleep(30)
 
     # Клик по кнопке "Войти"
