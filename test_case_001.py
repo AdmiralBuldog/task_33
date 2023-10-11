@@ -8,11 +8,11 @@ from credentials import correct_login, correct_password  # Импорт данн
 
 
 # Фикстура для инициализации и завершения работы драйвера
-@pytest.fixture
-def driver():
+@pytest.fixture  # Декоратор, указывающий, что следующая функция является фикстурой pytest
+def driver():  # Определение фикстуры, которая предоставляет объект драйвера браузера
     driver = webdriver.Chrome()  # Запуск драйвера Chrome
-    yield driver  # Возврат драйвера тестовой функции
-    driver.quit()  # Закрытие драйвера после выполнения теста
+    yield driver  # Возврат драйвера тестовой функции и приостановка выполнения функции до завершения теста
+    driver.quit()  # Закрытие драйвера и завершение сессии драйвера после выполнения теста
 
 
 def test_login_with_correct_credentials(driver):
