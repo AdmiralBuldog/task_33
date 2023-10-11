@@ -18,7 +18,7 @@ def test_faq_page(driver):
     # Переход на страницу FAQ
     driver.get("https://rt-internet.ru/faq")
 
-    # Ожидание загрузки страницы FAQ (например, ожидание появления первого вопроса)
+    # Ожидание загрузки страницы FAQ 
     WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.CSS_SELECTOR, "summary"))
     )
