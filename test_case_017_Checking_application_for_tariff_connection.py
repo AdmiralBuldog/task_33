@@ -5,11 +5,11 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-@pytest.fixture
+@pytest.fixture  # Определение фикстуры для инициализации и завершения работы драйвера
 def driver():
-    driver = webdriver.Chrome()
-    yield driver
-    driver.quit()
+    driver = webdriver.Chrome()  # Создание экземпляра драйвера Chrome
+    yield driver  # Возврат драйвера тестовой функции и ожидание завершения теста
+    driver.quit()  # Закрытие браузера после завершения теста
 
 
 def test_game_tariff_application(driver):
