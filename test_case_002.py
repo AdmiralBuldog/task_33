@@ -9,12 +9,13 @@ import time
 from credentials2 import incorrect_password, correct_login
 
 
-@pytest.fixture
-def driver():
-    driver = webdriver.Chrome()
-    driver.maximize_window()
-    yield driver
-    driver.quit()
+@pytest.fixture  # Декоратор, указывающий, что следующая функция является фикстурой pytest
+def driver():  # Определение фикстуры, которая предоставляет объект драйвера браузера
+    driver = webdriver.Chrome()  # Создание нового экземпляра драйвера Chrome
+    driver.maximize_window()  # Максимизация окна браузера
+    yield driver  # Возвращение драйвера вызывающему коду и приостановка функции до завершения теста
+    driver.quit()  # Закрытие браузера и завершение сессии драйвера после завершения теста
+
 
 
 def test_login_with_incorrect_password(driver):
