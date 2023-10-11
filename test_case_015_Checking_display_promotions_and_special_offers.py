@@ -13,10 +13,12 @@ def driver():
     driver.quit()  # Закрытие драйвера после выполнения теста
 
 
-def test_promotions_display(driver):
-    driver.get("https://rt-internet.ru/akcii")
+def test_promotions_display(driver):  # Определение функции теста для проверки отображения страницы акций
+    driver.get("https://rt-internet.ru/akcii")  # Открытие страницы акций
 
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#b21908")))
+    # Ожидание, пока элемент с CSS-селектором "#b21908" станет доступным для взаимодействия
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#b21908"))) 
+
 
     # Проверка акции "Великолепная четверка"
     assert driver.find_element(By.CSS_SELECTOR, "#b21908").is_displayed()
