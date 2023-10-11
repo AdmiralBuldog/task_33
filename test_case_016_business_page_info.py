@@ -1,26 +1,25 @@
-import pytest
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+import pytest  # Импортирование библиотеки pytest для организации тестирования
+from selenium import webdriver  # Импортирование webdriver для управления браузером
+from selenium.webdriver.common.by import By  # Импортирование By для указания способа поиска элемента
+from selenium.webdriver.support.ui import WebDriverWait  # Импортирование WebDriverWait для организации явных ожиданий
+from selenium.webdriver.support import expected_conditions as EC  # Импортирование expected_conditions для определения условий ожидания
 
 
-@pytest.fixture
+@pytest.fixture  # Определение фикстуры для инициализации и завершения работы драйвера
 def driver():
-    driver = webdriver.Chrome()
-    yield driver
-    driver.quit()
+    driver = webdriver.Chrome()  # Создание экземпляра драйвера Chrome
+    yield driver  # Возврат драйвера тестовой функции и ожидание завершения теста
+    driver.quit()  # Закрытие браузера после завершения теста
 
 
-def test_business_page_info(driver):
-    driver.get("https://rt-internet.ru/")
-    driver.find_element(By.CSS_SELECTOR, "a[href='/business']").click()
+def test_business_page_info(driver):  # Определение тестовой функции для проверки информации на странице бизнеса
+    driver.get("https://rt-internet.ru/")  # Открытие главной страницы сайта
+    driver.find_element(By.CSS_SELECTOR, "a[href='/business']").click()  # Переход на страницу бизнеса по ссылке
 
-    WebDriverWait(driver, 10).until(
+    WebDriverWait(driver, 10).until(  # Ожидание появления элемента на странице в течение 10 секунд
         EC.presence_of_element_located((By.CSS_SELECTOR, "#b13153"))
     )
 
-    assert "Популярные бизнес решения от Ростелеком" in driver.page_source
+    assert "Популярные бизнес решения от Ростелеком" in driver.page_source  # Проверка наличия текста на странице
 
-    assert driver.find_element(By.CSS_SELECTOR, "#c_13151").is_displayed()
-
+    assert driver.find_element(By.CSS_SELECTOR, "#c_13151").is_displayed()  # Проверка отображения элемента на странице
